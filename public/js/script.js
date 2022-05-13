@@ -1,7 +1,7 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-    console.log("iron-rooms JS imported successfully!");
+    console.log("YaPIC JS imported successfully!");
   },
   false
 );

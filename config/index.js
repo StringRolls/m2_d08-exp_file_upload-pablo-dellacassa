@@ -18,8 +18,8 @@ const favicon = require("serve-favicon");
 const path = require("path");
 
 //
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -39,20 +39,21 @@ module.exports = (app) => {
   app.use(express.static(path.join(__dirname, "..", "public")));
 
   // Handles access to the favicon
-  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(
+    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
+  );
 
   app.use(
-		session({
-			secret: 'PizzaBytes',
-			resave: true,
-			saveUninitialized: true,
-			cookie: {
-				maxAge: 30 * 24 * 60 * 60 * 1000
-			},
-			store: MongoStore.create({
-				mongoUrl: 'mongodb://localhost/auth-demo'
-			})
-		})
-	);
-
+    session({
+      secret: "PizzaBytes",
+      resave: true,
+      saveUninitialized: true,
+      cookie: {
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+      },
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI,
+      }),
+    })
+  );
 };
